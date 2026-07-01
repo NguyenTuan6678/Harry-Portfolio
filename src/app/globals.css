@@ -1,1 +1,76 @@
+@import url('https://fonts.googleapis.com/css2?family=Pixelify+Sans:wght@400;500;600;700&family=VT323&display=swap');
 @import "tailwindcss";
+
+@font-face {
+  font-family: 'JetBrainsMonoNerdFont';
+  src: url('https://cdn.jsdelivr.net/gh/Nick2bad4u/nerd-fonts-woff2@v1.0.0/fonts/woff2/JetBrainsMono/JetBrainsMonoNerdFont-Regular.woff2') format('woff2');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@theme {
+  --font-retro: 'VT323', monospace;
+  --font-pixel: 'Pixelify Sans', sans-serif;
+  --font-nerd: 'JetBrainsMonoNerdFont', monospace;
+  --color-sand: #ffebd6;
+  --color-charcoal: #5e3f43;
+  --color-terracotta: #f06275;
+  --color-deep-wine: #3c2428;
+  --color-gold: #ffd877;
+  --color-ochre: #3aa9bc;
+  --color-sage: #7be0ad;
+  --color-muted-olive: #ffa29e;
+  --color-dark-slate: #4D6D65;
+  --color-deep-plum: #53464C;
+}
+
+@variant dark (&:where(.dark, .dark *));
+
+body {
+  font-family: 'Pixelify Sans', sans-serif;
+}
+
+/* Retro game double border utility */
+.border-retro-double {
+  border: 4px double currentColor;
+}
+
+/* Retro game thick solid border */
+.border-retro-thick {
+  border: 4px solid currentColor;
+}
+
+/* Pixel graphic box shadow */
+.shadow-retro-pixel {
+  box-shadow: 4px 4px 0px 0px currentColor;
+}
+
+.shadow-retro-pixel-sm {
+  box-shadow: 2px 2px 0px 0px currentColor;
+}
+
+/* Custom scrollbar for retro terminal console */
+.font-mono::-webkit-scrollbar {
+  width: 4px;
+  height: 4px;
+}
+
+.font-mono::-webkit-scrollbar-track {
+  background: rgba(255, 255, 255, 0.05);
+}
+
+.font-mono::-webkit-scrollbar-thumb {
+  background: var(--color-sage);
+  border-radius: 4px;
+}
+
+.font-mono::-webkit-scrollbar-thumb:hover {
+  background: var(--color-dark-slate);
+}
+
+/* Dynamic language font family overrides to fix Vietnamese diacritics */
+.lang-vi {
+  --font-pixel: 'JetBrainsMonoNerdFont', monospace;
+  --font-retro: 'JetBrainsMonoNerdFont', monospace;
+}
