@@ -6,129 +6,112 @@
 [![TypeScript](https://img.shields.io/badge/TypeScript-5.0-blue?style=for-the-badge&logo=typescript&logoColor=white)](https://www.typescriptlang.org/)
 [![Motion](https://img.shields.io/badge/Motion-Framer_Motion-FF69B4?style=for-the-badge&logo=framer&logoColor=white)](https://motion.dev/)
 
-Một trang web portfolio cá nhân độc đáo được thiết kế theo phong cách **Retro Game (8-bit/Pixel Art)** với các tương tác mô phỏng máy chơi game cổ điển và console lập trình viên.
+A unique developer portfolio web application designed in a **Retro Game (8-bit / Pixel Art)** aesthetic, featuring simulated classic game boot screens, interactive command-line interfaces, and game-inspired components.
 
 ---
 
-## 📺 Video Demo & Screenshots
+## ✨ Key Features
 
-> [!TIP]
-> Bạn có thể quay màn hình (sử dụng OBS, Loom, hoặc tính năng ghi màn hình mặc định của macOS) rồi lưu file video vào thư mục `public/demo.mp4` hoặc chuyển thành file `.gif` và đặt vào đây để hiển thị trực tiếp trên GitHub README.
-
-### 🎥 Demo Video
-https://github.com/NguyenTuan6678/Harry-Portfolio/assets/demo.mp4
-
-*(Nếu video không tự động chạy, bạn có thể xem trực tiếp video tại: `public/demo.mp4` hoặc tải file về máy)*
-
-### 📸 Giao diện chính (Desktop & Mobile)
-| Màn hình Khởi động (Cinematic Intro) | Bảng điều khiển chính (Portfolio Poster) |
-|:---:|:---:|
-| <img src="public/animeavatar.png" width="300" alt="Intro Mockup"/> | <img src="public/animeavatar.png" width="300" alt="Poster Mockup"/> |
-
----
-
-## ✨ Tính năng nổi bật
-
-- 🎬 **Cinematic Intro (Màn hình khởi động)**: Tái hiện lại trải nghiệm khởi động của các hệ máy chơi game cổ điển (console boot screen) với thanh tải dữ liệu và dòng mã giả lập terminal kết nối.
-- 📟 **Interactive Developer Console**: Một Terminal ảo đầy đủ chức năng giúp người dùng tương tác bằng dòng lệnh (CLI). Hỗ trợ các câu lệnh:
-  - `help` - Hiển thị danh sách câu lệnh.
-  - `about` - Giới thiệu bản thân.
-  - `projects` - Xem danh sách dự án.
-  - `skills` - Hiển thị kỹ năng lập trình.
-  - `clear` - Xóa màn hình console.
-  - `neofetch` - Hiển thị thông số hệ thống phong cách Linux retro.
-- 🪪 **Lanyard Card (Thẻ Nhân Viên)**: Thẻ thông tin cá nhân bo viền sắc nét mô phỏng thẻ ID Card trong game.
-- 📂 **Project Showcase & Detail Modal**: Danh sách dự án hiển thị dưới dạng retro poster độc đáo. Khi click vào dự án, một cửa sổ chi tiết (Modal) sẽ hiện lên với các hiệu ứng động mượt mà qua thư viện Framer Motion (`motion`).
-- 🌐 **Đa ngôn ngữ (English / Tiếng Việt)**: Hệ thống dịch chuyển ngữ chuẩn hóa tích hợp sẵn cho toàn bộ nội dung portfolio.
-- 🎨 **Theme Switcher**: Cho phép thay đổi giữa nhiều bảng màu retro (Retro Sand, Charcoal, Terracotta, Deep Wine, Gold, v.v.).
-- 📱 **Responsive Design**: Tương thích hoàn hảo trên các thiết bị di động, tablet và desktop.
+- 🎬 **Cinematic Intro**: Recreates a nostalgic console booting experience (retro BIOS boot screen) complete with a progress bar, booting logs, and strobe flash transitions on start.
+- 📟 **Interactive Developer Console**: A fully functional virtual CLI terminal that allows users to interact via command lines. Supported commands:
+  - `help` - Lists all available commands.
+  - `about` - Displays background info.
+  - `projects` - Lists levels/projects.
+  - `skills` - Displays programming skills with level points.
+  - `clear` - Clears the console.
+  - `neofetch` - Shows retro system hardware information.
+- 🪪 **Lanyard Card**: An 8-bit style profile card resembling a retro RPG character sheet or game ID card.
+- 📂 **Project Showcase & Stage Select**: Displays projects as retro game level posters. Includes dynamic entrance animations that pop in with a staggered CRT monitor flicker. Clicking a level opens a detailed RPG-style Modal.
+- 🌐 **Multilingual Support**: Supports both English and Vietnamese, pre-integrated throughout the portfolio's content.
+- 🎨 **Theme Switcher**: Offers customization between multiple classic retro color palettes (Retro Sand, Charcoal, Terracotta, Deep Wine, Gold, etc.).
+- 📱 **Responsive Design**: Optimized for a seamless experience across desktop, tablet, and mobile layouts.
 
 ---
 
-## 🛠️ Công nghệ sử dụng
+## 🛠️ Built With
 
 - **Framework**: [Next.js 16 (App Router)](https://nextjs.org/)
-- **Thư viện UI**: [React 19](https://react.dev/)
+- **UI Library**: [React 19](https://react.dev/)
 - **Styling**: [Tailwind CSS v4](https://tailwindcss.com/) & [PostCSS](https://postcss.org/)
-- **Hiệu ứng chuyển động**: [Motion (Framer Motion 12)](https://motion.dev/)
-- **Ngôn ngữ**: [TypeScript](https://www.typescriptlang.org/)
-- **Font chữ**: Google Fonts (`Pixelify Sans`, `VT323`) & JetBrains Mono Nerd Font để hiển thị icon/chữ lập trình viên chuẩn xác.
+- **Animations**: [Motion (Framer Motion 12)](https://motion.dev/)
+- **Language**: [TypeScript](https://www.typescriptlang.org/)
+- **Typography**: Google Fonts (`Pixelify Sans`, `VT323`) & JetBrains Mono Nerd Font for terminal and programming icons.
 
 ---
 
-## 📂 Cấu trúc thư mục chính
+## 📂 Core Folder Structure
 
 ```text
 harryportfolio/
-├── .vscode/               # Cấu hình IDE (Bỏ qua cảnh báo CSS của Tailwind v4)
-├── public/                # Tài nguyên tĩnh (Hình ảnh, Avatar, Icons, Demo Video)
+├── .vscode/               # IDE configuration (ignores Tailwind v4 custom linting rules)
+├── public/                # Static assets (avatar, images, icons)
 ├── src/
-│   ├── app/               # Next.js App Router (Layout, Page, Global CSS)
-│   │   ├── globals.css    # Cấu hình Tailwind v4 theme, fonts, custom utility classes
+│   ├── app/               # Next.js App Router (Layouts, Pages, Globals)
+│   │   ├── globals.css    # Tailwind v4 theme, fonts, custom utility borders
 │   │   ├── layout.tsx
 │   │   └── page.tsx
-│   └── component/         # Các components giao diện
+│   └── component/         # Reusable UI components
 │       ├── cinematic-intro/
-│       │   └── CinematicIntro.tsx    # Giao diện hoạt cảnh mở đầu
+│       │   └── CinematicIntro.tsx    # Cinematic game booting overlay
 │       └── portfolioPoster/
-│           ├── CurvedLogo.tsx        # Logo dạng cong kiểu game cổ điển
-│           ├── DeveloperConsole.tsx  # Terminal tương tác CLI
-│           ├── PortfolioPoster.tsx   # Trang dashboard tổng hợp
-│           ├── ProjectGraphic.tsx    # Minh họa đồ họa dự án
-│           ├── ProjectModal.tsx      # Modal chi tiết dự án
-│           ├── LanyardCard.tsx       # Thẻ nhân viên 8-bit
-│           ├── data.ts               # Dữ liệu dự án và thông tin cá nhân
-│           └── translations.ts       # File chứa các bản dịch song ngữ
+│           ├── CurvedLogo.tsx        # Curved pixel-art retro game logo
+│           ├── DeveloperConsole.tsx  # Interactive terminal sandbox
+│           ├── PortfolioPoster.tsx   # Dashboard poster layout container
+│           ├── ProjectGraphic.tsx    # Custom project level graphics
+│           ├── ProjectModal.tsx      # Level detail dialog box
+│           ├── LanyardCard.tsx       # RPG-style character ID card
+│           ├── data.ts               # Core project metadata and assets info
+│           └── translations.ts       # English & Vietnamese translation database
 ```
 
 ---
 
-## 🚀 Hướng dẫn cài đặt và chạy thử
+## 🚀 Installation & Local Development
 
-### Yêu cầu hệ thống
-- **Node.js**: Phiên bản 18.x trở lên
-- **npm** hoặc **yarn** / **pnpm**
+### System Requirements
+- **Node.js**: Version 18.x or higher
+- **npm**, **yarn**, or **pnpm** package manager
 
-### Các bước thực hiện
+### Steps to Run Locally
 
-1. **Clone repository về máy**:
+1. **Clone the repository**:
    ```bash
    git clone https://github.com/NguyenTuan6678/Harry-Portfolio.git
    cd Harry-Portfolio/harryportfolio
    ```
 
-2. **Cài đặt các gói thư viện**:
+2. **Install dependencies**:
    ```bash
    npm install
    ```
 
-3. **Chạy dự án ở chế độ phát triển (Development)**:
+3. **Start the development server**:
    ```bash
    npm run dev
    ```
-   *Mở trình duyệt truy cập địa chỉ [http://localhost:3000](http://localhost:3000) để trải nghiệm ứng dụng.*
+   *Open [http://localhost:3000](http://localhost:3000) in your browser to view the application.*
 
-4. **Build dự án cho sản phẩm (Production)**:
+4. **Build for production**:
    ```bash
    npm run build
-   # Chạy server production sau khi build thành công
+   # Start the production server
    npm start
    ```
 
 ---
 
-## 📝 Quy trình Commit dự án
+## 📝 Commit Guidelines
 
-Dự án tuân thủ cách viết commit rõ ràng theo chuẩn **Conventional Commits**:
-- `feat`: Tính năng mới (ví dụ: tạo component mới).
-- `fix`: Sửa lỗi.
-- `style`: Định dạng mã nguồn, CSS, theme.
-- `refactor`: Tái cấu trúc mã nguồn (ví dụ: xóa file thừa).
-- `chore`: Thay đổi cấu hình dự án, cấu hình IDE, dependencies.
+The project strictly follows the **Conventional Commits** specification:
+- `feat`: A new feature (e.g., adding a new component).
+- `fix`: A bug fix.
+- `style`: Changes that do not affect the meaning of the code (CSS, spacing, themes).
+- `refactor`: A code change that neither fixes a bug nor adds a feature (e.g., removing unused files).
+- `chore`: Project configuration adjustments, dependencies updates, IDE files.
 
 ---
 
-## 📄 Bản quyền
+## 📄 License
 
-Dự án được phát triển bởi **Harry Nguyen**.
-Vui lòng không sao chép lại mã nguồn mà không có sự đồng ý.
+Developed by **Harry Nguyen**.
+Please do not copy or replicate the code without proper attribution or consent.
