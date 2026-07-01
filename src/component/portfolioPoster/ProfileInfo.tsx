@@ -26,7 +26,7 @@ export default function ProfileInfo({ lang }: { lang: "vi" | "en" }) {
 
       {/* Main Attributes Grid */}
       <div className="grid grid-cols-1 gap-6 md:grid-cols-3">
-        
+
         {/* Col 1: Attributes/Stats */}
         <div className="border-retro-double border-ochre/50 bg-[#D3CAAC]/10 dark:bg-[#53464C]/10 p-5 rounded">
           <h2 className="mb-4 text-lg font-bold uppercase tracking-wider text-terracotta border-b border-ochre/30 pb-1.5 font-pixel">
@@ -38,10 +38,10 @@ export default function ProfileInfo({ lang }: { lang: "vi" | "en" }) {
             <div>
               <div className="flex justify-between font-bold mb-1">
                 <span>STR [TS / NESTJS]</span>
-                <span className="text-terracotta dark:text-gold">90/90</span>
+                <span className="text-terracotta dark:text-gold">80/100</span>
               </div>
               <div className="h-4 w-full border border-charcoal dark:border-sand p-0.5 bg-charcoal/20">
-                <div className="h-full bg-muted-olive w-[90%]" />
+                <div className="h-full bg-muted-olive w-[80%]" />
               </div>
             </div>
 
@@ -49,10 +49,10 @@ export default function ProfileInfo({ lang }: { lang: "vi" | "en" }) {
             <div>
               <div className="flex justify-between font-bold mb-1">
                 <span>AGI [REACT / NEXT]</span>
-                <span className="text-terracotta dark:text-gold">80/80</span>
+                <span className="text-terracotta dark:text-gold">70/100</span>
               </div>
               <div className="h-4 w-full border border-charcoal dark:border-sand p-0.5 bg-charcoal/20">
-                <div className="h-full bg-sage w-[80%]" />
+                <div className="h-full bg-sage w-[70%]" />
               </div>
             </div>
 
@@ -60,10 +60,10 @@ export default function ProfileInfo({ lang }: { lang: "vi" | "en" }) {
             <div>
               <div className="flex justify-between font-bold mb-1">
                 <span>INT [SPRING BOOT]</span>
-                <span className="text-terracotta dark:text-gold">70/70</span>
+                <span className="text-terracotta dark:text-gold">80/100</span>
               </div>
               <div className="h-4 w-full border border-charcoal dark:border-sand p-0.5 bg-charcoal/20">
-                <div className="h-full bg-ochre w-[70%]" />
+                <div className="h-full bg-ochre w-[80%]" />
               </div>
             </div>
 
@@ -71,10 +71,10 @@ export default function ProfileInfo({ lang }: { lang: "vi" | "en" }) {
             <div>
               <div className="flex justify-between font-bold mb-1">
                 <span>LUK [SWIFT / IOS]</span>
-                <span className="text-terracotta dark:text-gold">70/70</span>
+                <span className="text-terracotta dark:text-gold">60/100</span>
               </div>
               <div className="h-4 w-full border border-charcoal dark:border-sand p-0.5 bg-charcoal/20">
-                <div className="h-full bg-terracotta w-[70%]" />
+                <div className="h-full bg-terracotta w-[60%]" />
               </div>
             </div>
           </div>
@@ -130,7 +130,7 @@ export default function ProfileInfo({ lang }: { lang: "vi" | "en" }) {
             </p>
             <p>
               <span className="text-terracotta dark:text-gold font-bold">EMAIL:</span>{" "}
-              <span className="font-pixel">harrynguyen.dev@gmail.com</span>
+              <span className="font-pixel">canhdongtuyet39@gmail.com</span>
             </p>
             <p>
               <span className="text-terracotta dark:text-gold font-bold">MAP:</span>{" "}

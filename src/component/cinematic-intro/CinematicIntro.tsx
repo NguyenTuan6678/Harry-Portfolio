@@ -1,7 +1,7 @@
 "use client";
 
 import { AnimatePresence, motion } from "motion/react";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
 import { translations } from "../portfolioPoster/translations";
 
 type CinematicIntroProps = {
@@ -18,9 +18,11 @@ export default function CinematicIntro({ onComplete, lang }: CinematicIntroProps
 
   // Simulated loading logs
   const [logs, setLogs] = useState<string[]>([]);
+  const progressRef = useRef(0);
 
   useEffect(() => {
     document.body.style.overflow = "hidden";
+    progressRef.current = 0;
 
     const logMessages = [
       { prg: 8, text: "> SYSTEM: BOOTING HARRY_ARCADE v2.6..." },
@@ -34,37 +36,26 @@ export default function CinematicIntro({ onComplete, lang }: CinematicIntroProps
     ];
 
     const interval = setInterval(() => {
-      setProgress((prev) => {
-        const increment = Math.floor(Math.random() * 4 + 2);
-        const next = prev + increment;
-        
-        if (next >= 100) {
-          clearInterval(interval);
-          setIsReady(true);
-          
-          // Add remaining logs
-          setLogs((prevLogs) => {
-            const added = logMessages
-              .filter((m) => m.prg > prev && m.prg <= 100)
-              .map((m) => m.text);
-            return [...prevLogs, ...added];
-          });
-          return 100;
-        }
+      const prev = progressRef.current;
+      const increment = Math.floor(Math.random() * 4 + 2);
+      const next = Math.min(prev + increment, 100);
+      
+      progressRef.current = next;
+      setProgress(next);
 
-        // Add logs dynamically as progress matches thresholds
-        setLogs((prevLogs) => {
-          const added = logMessages
-            .filter((m) => m.prg > prev && m.prg <= next)
-            .map((m) => m.text);
-          if (added.length > 0) {
-            return [...prevLogs, ...added];
-          }
-          return prevLogs;
-        });
+      // Add logs dynamically as progress matches thresholds
+      const added = logMessages
+        .filter((m) => m.prg > prev && m.prg <= next)
+        .map((m) => m.text);
+      
+      if (added.length > 0) {
+        setLogs((prevLogs) => [...prevLogs, ...added]);
+      }
 
-        return next;
-      });
+      if (next >= 100) {
+        clearInterval(interval);
+        setIsReady(true);
+      }
     }, 70);
 
     return () => {
@@ -93,7 +84,7 @@ export default function CinematicIntro({ onComplete, lang }: CinematicIntroProps
           transition={{ duration: 0.5, ease: "easeInOut" }}
         >
           {/* CRT Scanline Overlay filter */}
-          <div className="absolute inset-0 pointer-events-none z-50 bg-[linear-gradient(rgba(18,16,16,0)_50%,rgba(0,0,0,0.25)_50%),linear-gradient(90deg,rgba(255,0,0,0.06),rgba(0,255,0,0.02),rgba(0,0,255,0.06))] bg-[size:100%_4px,3px_100%] opacity-85" />
+          <div className="absolute inset-0 pointer-events-none z-50 crt-scanlines opacity-85" />
           
           {/* Subtle CRT Flicker */}
           <div className="absolute inset-0 pointer-events-none z-45 bg-[#ffa29e]/[0.02] animate-pulse" />

@@ -36,7 +36,8 @@ export default function CurvedLogo() {
       animate={{ opacity: 1, y: 0, scale: 1 }}
       transition={{ type: "spring", stiffness: 180, damping: 10, delay: 0.1 }}
     >
-      <div className="font-retro flex w-full max-w-7xl items-start justify-between text-[17vw] font-black uppercase leading-none text-gold drop-shadow-[4px_4px_0px_#744146] md:text-[10vw]">
+      <div className="relative w-fit mx-auto">
+        <div className="font-retro flex w-full max-w-7xl items-start justify-center gap-[1vw] md:gap-[1.5vw] text-[12vw] font-black uppercase leading-none text-gold drop-shadow-[4px_4px_0px_#744146] md:text-[10vw] lg:text-[8vw]">
         {letters.map((letter, index) => (
           <motion.span
             key={`${letter.text}-${index}`}
@@ -72,7 +73,7 @@ export default function CurvedLogo() {
         ))}
 
         <motion.span
-          className="ml-10 inline-block cursor-default select-none text-[6vw] font-black text-terracotta drop-shadow-[2px_2px_0px_#744146] md:text-[3.5vw]"
+          className="ml-3 md:ml-8 inline-block cursor-default select-none text-[6vw] font-black text-terracotta drop-shadow-[2px_2px_0px_#744146] md:text-[3.5vw]"
           animate={{
             y: [28, 18, 28],
           }}
@@ -86,6 +87,16 @@ export default function CurvedLogo() {
           <motion.span className="inline-block">’26</motion.span>
         </motion.span>
       </div>
-    </motion.div>
+      
+      <motion.p
+        className="absolute right-0 top-[100%] mt-8 md:mt-12 text-right text-base font-bold uppercase tracking-[0.2em] text-gold drop-shadow-[2px_2px_0px_#744146] font-retro md:text-xl lg:text-2xl whitespace-nowrap"
+        initial={{ opacity: 0, scale: 0.5, y: -20 }}
+        animate={{ opacity: 1, scale: 1, y: 0 }}
+        transition={{ type: "spring", stiffness: 220, damping: 10, delay: 0.85 }}
+      >
+        Harry Nguyen
+      </motion.p>
+    </div>
+  </motion.div>
   );
 }
