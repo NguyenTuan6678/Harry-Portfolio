@@ -82,9 +82,17 @@ export default function ProjectModal({ project, lang, onClose }: ProjectModalPro
           </button>
 
           <motion.div
-            initial={{ opacity: 0, y: 15 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.1 }}
+            initial={{ opacity: 0, y: 30, scale: 0.95 }}
+            animate={{ 
+              opacity: [0, 1, 0.5, 1], // quick neon/CRT blink
+              y: 0, 
+              scale: 1 
+            }}
+            transition={{ 
+              opacity: { duration: 0.3, times: [0, 0.15, 0.3, 1], delay: 0.15 },
+              y: { type: "spring", stiffness: 300, damping: 18, delay: 0.15 },
+              scale: { type: "spring", stiffness: 300, damping: 18, delay: 0.15 }
+            }}
             className="space-y-6"
           >
             <div>

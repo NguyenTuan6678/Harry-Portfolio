@@ -40,10 +40,18 @@ export default function ProjectContent({ lang }: { lang: "vi" | "en" }) {
     <div className="w-full max-w-7xl font-retro">
       {/* Retro Stage Select Header */}
       <motion.div
-        initial={{ opacity: 0, y: 30 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: false, amount: 0.15 }}
-        transition={{ duration: 0.6 }}
+        initial={{ opacity: 0, y: -50, scale: 1.1 }}
+        whileInView={{ 
+          opacity: [0, 1, 0.3, 1, 0.7, 1], // CRT flicker
+          y: 0,
+          scale: 1 
+        }}
+        viewport={{ once: true, amount: 0.15 }}
+        transition={{ 
+          opacity: { duration: 0.4, times: [0, 0.1, 0.2, 0.3, 0.4, 1] },
+          y: { type: "spring", stiffness: 240, damping: 12 },
+          scale: { type: "spring", stiffness: 240, damping: 12 }
+        }}
         className="relative mb-14 text-center"
       >
         <h2 className="font-pixel text-5xl font-extrabold uppercase tracking-wider text-gold drop-shadow-[3px_3px_0px_#3c2428] md:text-7xl">
@@ -58,10 +66,18 @@ export default function ProjectContent({ lang }: { lang: "vi" | "en" }) {
         {localizedProjects.map((project, idx) => (
           <motion.div
             key={project.id}
-            initial={{ opacity: 0, y: 40 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: false, amount: 0.1 }}
-            transition={{ duration: 0.6, delay: idx * 0.08, ease: "easeOut" }}
+            initial={{ opacity: 0, scale: 0.7, y: 50 }}
+            whileInView={{ 
+              opacity: [0, 1, 0.4, 1, 0.8, 1], // CRT flicker
+              scale: 1, 
+              y: 0 
+            }}
+            viewport={{ once: true, amount: 0.1 }}
+            transition={{ 
+              opacity: { duration: 0.4, times: [0, 0.15, 0.3, 0.45, 0.6, 1], delay: idx * 0.07 },
+              scale: { type: "spring", stiffness: 260, damping: 14, delay: idx * 0.07 },
+              y: { type: "spring", stiffness: 260, damping: 14, delay: idx * 0.07 }
+            }}
           >
             <motion.article
               layoutId={`project-${project.id}`}

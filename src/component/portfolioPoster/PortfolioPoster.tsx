@@ -23,19 +23,35 @@ export default function PortfolioPoster({ lang }: { lang: "vi" | "en" }) {
       >
         <div className="grid w-full max-w-7xl grid-cols-1 items-center gap-12 md:grid-cols-[450px_1fr]">
           <motion.div
-            initial={{ opacity: 0, x: -40 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: false, amount: 0.15 }}
-            transition={{ duration: 0.7, ease: "easeOut" }}
+            initial={{ opacity: 0, scale: 0.8, x: -60 }}
+            whileInView={{ 
+              opacity: [0, 1, 0.4, 1, 0.8, 1], // CRT flicker
+              scale: 1, 
+              x: 0 
+            }}
+            viewport={{ once: true, amount: 0.15 }}
+            transition={{ 
+              opacity: { duration: 0.4, times: [0, 0.15, 0.3, 0.45, 0.6, 1] },
+              scale: { type: "spring", stiffness: 220, damping: 15 },
+              x: { type: "spring", stiffness: 220, damping: 15 }
+            }}
           >
             <LanyardCard lang={lang} />
           </motion.div>
           
           <motion.div
-            initial={{ opacity: 0, x: 40 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: false, amount: 0.15 }}
-            transition={{ duration: 0.7, ease: "easeOut", delay: 0.1 }}
+            initial={{ opacity: 0, scale: 0.8, x: 60 }}
+            whileInView={{ 
+              opacity: [0, 1, 0.4, 1, 0.8, 1], // CRT flicker
+              scale: 1, 
+              x: 0 
+            }}
+            viewport={{ once: true, amount: 0.15 }}
+            transition={{ 
+              opacity: { duration: 0.4, times: [0, 0.15, 0.3, 0.45, 0.6, 1], delay: 0.15 },
+              scale: { type: "spring", stiffness: 220, damping: 15, delay: 0.15 },
+              x: { type: "spring", stiffness: 220, damping: 15, delay: 0.15 }
+            }}
           >
             <ProfileInfo lang={lang} />
           </motion.div>
@@ -56,10 +72,18 @@ export default function PortfolioPoster({ lang }: { lang: "vi" | "en" }) {
         className="relative flex min-h-screen flex-col items-center justify-center px-6 py-20"
       >
         <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: false, amount: 0.15 }}
-          transition={{ duration: 0.6 }}
+          initial={{ opacity: 0, y: -40, scale: 1.1 }}
+          whileInView={{ 
+            opacity: [0, 1, 0.3, 1, 0.7, 1], // CRT flicker
+            y: 0,
+            scale: 1 
+          }}
+          viewport={{ once: true, amount: 0.15 }}
+          transition={{ 
+            opacity: { duration: 0.4, times: [0, 0.1, 0.2, 0.3, 0.4, 1] },
+            y: { type: "spring", stiffness: 220, damping: 12 },
+            scale: { type: "spring", stiffness: 220, damping: 12 }
+          }}
           className="mb-10 text-center font-retro"
         >
           <h2 className="font-pixel text-4xl font-extrabold uppercase tracking-wider text-gold drop-shadow-[3px_3px_0px_#3c2428] md:text-6xl">
@@ -71,10 +95,18 @@ export default function PortfolioPoster({ lang }: { lang: "vi" | "en" }) {
         </motion.div>
         
         <motion.div
-          initial={{ opacity: 0, y: 50 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: false, amount: 0.15 }}
-          transition={{ duration: 0.7, delay: 0.1 }}
+          initial={{ opacity: 0, scale: 0.9, y: 40 }}
+          whileInView={{ 
+            opacity: [0, 1, 0.4, 1, 0.8, 1], // CRT flicker
+            scale: 1,
+            y: 0
+          }}
+          viewport={{ once: true, amount: 0.15 }}
+          transition={{ 
+            opacity: { duration: 0.4, times: [0, 0.15, 0.3, 0.45, 0.6, 1], delay: 0.15 },
+            scale: { type: "spring", stiffness: 200, damping: 16, delay: 0.15 },
+            y: { type: "spring", stiffness: 200, damping: 16, delay: 0.15 }
+          }}
           className="w-full flex justify-center"
         >
           <DeveloperConsole lang={lang} />

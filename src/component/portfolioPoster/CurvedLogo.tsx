@@ -30,7 +30,12 @@ const bounceTransition = {
 
 export default function CurvedLogo() {
   return (
-    <div className="relative z-20 flex w-full justify-center">
+    <motion.div 
+      className="relative z-20 flex w-full justify-center"
+      initial={{ opacity: 0, y: -120, scale: 1.15 }}
+      animate={{ opacity: 1, y: 0, scale: 1 }}
+      transition={{ type: "spring", stiffness: 180, damping: 10, delay: 0.1 }}
+    >
       <div className="font-retro flex w-full max-w-7xl items-start justify-between text-[17vw] font-black uppercase leading-none text-gold drop-shadow-[4px_4px_0px_#744146] md:text-[10vw]">
         {letters.map((letter, index) => (
           <motion.span
@@ -81,6 +86,6 @@ export default function CurvedLogo() {
           <motion.span className="inline-block">’26</motion.span>
         </motion.span>
       </div>
-    </div>
+    </motion.div>
   );
 }
