@@ -3,7 +3,7 @@ import "./globals.css";
 
 export const metadata: Metadata = {
   title: "Harry Portfolio",
-  description: "Harry Nguyen's personal portfolio",
+  description: "Harry Nguyen Portfolio",
 };
 
 export default function RootLayout({
@@ -12,7 +12,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" suppressHydrationWarning>
+    <html lang="en">
       <body>{children}</body>
     </html>
   );
