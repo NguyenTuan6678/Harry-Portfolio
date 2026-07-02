@@ -37,28 +37,29 @@ export default function ThemeSwitcher() {
 
   return (
     <>
-      {/* Floating Toggle Button */}
+      {/* Floating Toggle Button (Stardew Wood Circle style) */}
       <button
         onClick={toggleTheme}
-        className="fixed bottom-6 right-6 z-[90] flex h-12 w-12 cursor-pointer items-center justify-center rounded-full border border-black/10 bg-white/70 text-lg shadow-lg backdrop-blur-md transition-all hover:scale-105 hover:bg-white dark:border-white/10 dark:bg-zinc-900/70 dark:hover:bg-zinc-900"
+        className="fixed bottom-6 right-6 z-[90] flex h-12 w-12 cursor-pointer items-center justify-center border-4 border-[#5c3e29] outline-2 outline-[#2d231e] bg-[#cfb088] text-lg shadow-[3px_3px_0px_rgba(0,0,0,0.15)] hover:scale-105 hover:bg-[#dfb784] active:scale-95 transition-all text-[#2d231e]"
         aria-label="Toggle cinematic theme"
-        title="Đổi giao diện điện ảnh"
+        title="Đổi giao diện nông trại"
       >
         <motion.span
           animate={{ rotate: isDark ? 180 : 0 }}
           transition={{ type: "spring", stiffness: 200 }}
+          className="font-pixel text-[17px] font-bold"
         >
           {isDark ? "☀️" : "🌙"}
         </motion.span>
       </button>
 
-      {/* Full-Screen Camera Shutter Transition */}
+      {/* Full-Screen Camera Shutter Transition (Stardew Style Wooden sliding gates) */}
       <AnimatePresence>
         {isAnimating && (
           <div className="fixed inset-0 z-[1000] pointer-events-none flex flex-col justify-between">
-            {/* Top Shutter Panel */}
+            {/* Top Shutter Panel (Wooden color) */}
             <motion.div
-              className="w-full bg-[#111111] dark:bg-[#faf8f1]"
+              className="w-full bg-[#5c3e29] border-b-8 border-[#2d231e]"
               style={{ height: "50vh" }}
               initial={{ y: "-100%" }}
               animate={{
@@ -70,9 +71,9 @@ export default function ThemeSwitcher() {
                 ease: [0.76, 0, 0.24, 1],
               }}
             />
-            {/* Bottom Shutter Panel */}
+            {/* Bottom Shutter Panel (Wooden color) */}
             <motion.div
-              className="w-full bg-[#111111] dark:bg-[#faf8f1]"
+              className="w-full bg-[#5c3e29] border-t-8 border-[#2d231e]"
               style={{ height: "50vh" }}
               initial={{ y: "100%" }}
               animate={{

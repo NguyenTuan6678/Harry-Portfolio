@@ -4,6 +4,7 @@ import { motion } from "motion/react";
 import { useEffect } from "react";
 import ProjectGraphic from "./ProjectGraphic";
 import { translations } from "./translations";
+import { StardewCrop } from "./StardewSprites";
 
 type Project = {
   id: string;
@@ -47,16 +48,23 @@ export default function ProjectModal({ project, lang, onClose }: ProjectModalPro
         onClick={onClose}
       />
 
-      {/* Modal Container (RPG Dialog Box) */}
+      {/* Modal Container (Stardew Scroll Panel style) */}
       <motion.div
         layoutId={`project-${project.id}`}
-        className="relative z-10 grid h-full max-h-[85vh] w-full max-w-5xl overflow-hidden border-retro-double border-ochre bg-[#faf8f1] text-[#111111] dark:bg-[#42383F] dark:text-[#f5f5f7] md:grid-cols-2 shadow-retro-pixel rounded-sm"
+        className="relative z-10 grid h-full max-h-[85vh] w-full max-w-5xl overflow-hidden panel-stardew text-charcoal md:grid-cols-2 shadow-2xl rounded-sm"
         transition={{ type: "spring", stiffness: 350, damping: 30 }}
       >
+        {/* Corners decorations */}
+        <div className="stardew-corners absolute inset-0 pointer-events-none z-30" />
+
         {/* Left Side: Art & Image */}
-        <div className="relative flex items-center justify-center p-8 bg-charcoal/5 dark:bg-black/25 overflow-hidden border-b-4 md:border-b-0 md:border-r-4 border-charcoal dark:border-sand">
-          {/* Retro numbers watermark */}
-          <span className="absolute -left-10 -top-10 select-none text-[20rem] font-black leading-none text-charcoal/5 dark:text-sand/5">
+        <div className="relative flex items-center justify-center p-8 bg-[#cfb088]/15 overflow-hidden border-b-4 md:border-b-0 md:border-r-4 border-[#5c3e29]">
+          {/* Watermark crop decoration */}
+          <div className="absolute top-4 left-4 z-20 opacity-30">
+            <StardewCrop type="pumpkin" size={48} />
+          </div>
+
+          <span className="absolute -left-10 -top-10 select-none text-[20rem] font-black leading-none text-[#5c3e29]/5">
             {project.id}
           </span>
 
@@ -71,53 +79,54 @@ export default function ProjectModal({ project, lang, onClose }: ProjectModalPro
         </div>
 
         {/* Right Side: Content Details */}
-        <div className="flex flex-col overflow-y-auto p-6 md:p-10 font-pixel">
-          {/* Close button (Square Retro Button) */}
+        <div className="flex flex-col overflow-y-auto p-6 md:p-10 font-pixel bg-[#fcf3d9]">
+          {/* Close button (Stardew Style Red button) */}
           <button
             onClick={onClose}
-            className="absolute right-4 top-4 flex h-8 w-8 items-center justify-center border-2 border-retro-thick border-charcoal bg-terracotta text-white font-retro font-bold text-sm shadow-retro-pixel-sm transition-transform hover:translate-x-0.5 hover:translate-y-0.5 hover:shadow-none cursor-pointer"
+            className="absolute right-4 top-4 flex h-8 w-8 items-center justify-center border-2 border-[#5c3e29] bg-terracotta text-[#fcf3d9] font-retro font-bold text-lg shadow-[2px_2px_0px_rgba(0,0,0,0.15)] hover:scale-105 active:scale-95 cursor-pointer z-50"
             aria-label="Close modal"
           >
             &times;
           </button>
 
           <motion.div
-            initial={{ opacity: 0, y: 30, scale: 0.95 }}
+            initial={{ opacity: 0, y: 20, scale: 0.96 }}
             animate={{ 
-              opacity: [0, 1, 0.5, 1], // quick neon/CRT blink
+              opacity: 1,
               y: 0, 
               scale: 1 
             }}
             transition={{ 
-              opacity: { duration: 0.3, times: [0, 0.15, 0.3, 1], delay: 0.15 },
-              y: { type: "spring", stiffness: 300, damping: 18, delay: 0.15 },
-              scale: { type: "spring", stiffness: 300, damping: 18, delay: 0.15 }
+              type: "spring",
+              stiffness: 280,
+              damping: 18,
+              delay: 0.1
             }}
             className="space-y-6"
           >
             <div>
-              <span className="font-pixel text-[13px] font-bold uppercase tracking-widest text-terracotta">
+              <span className="font-pixel text-[12px] font-black uppercase tracking-widest text-terracotta">
                 {t.projectNo} 0{project.id}
               </span>
-              <h2 className="font-pixel text-24px md:text-[30px] font-bold uppercase tracking-tight text-black dark:text-sand mt-1.5">
+              <h2 className="font-pixel text-2xl md:text-[28px] font-black uppercase tracking-tight text-charcoal mt-1 leading-tight">
                 {project.title}
               </h2>
             </div>
 
-            <p className="text-[16px] leading-relaxed text-black/75 dark:text-white/75 font-pixel">
+            <p className="text-[14.5px] leading-relaxed text-charcoal/90 font-medium">
               {project.longDesc}
             </p>
 
             {/* Tech Tags */}
             <div>
-              <h3 className="font-pixel mb-2.5 text-[15px] font-bold uppercase tracking-wider text-terracotta border-b border-ochre/20 pb-1">
-                ⚡ {t.technologies}
+              <h3 className="font-pixel mb-2 text-[14px] font-black uppercase tracking-wider text-terracotta border-b-2 border-charcoal/10 pb-1 flex items-center gap-1">
+                <span>⚡</span> {t.technologies}
               </h3>
-              <div className="flex flex-wrap gap-1.5 font-pixel text-[13px]">
+              <div className="flex flex-wrap gap-1.5 font-pixel text-[12px] pt-1">
                 {project.tech.map((tag) => (
                   <span
                     key={tag}
-                    className="rounded border border-ochre bg-charcoal/10 dark:bg-white/10 px-2 py-0.5 font-bold"
+                    className="rounded border border-[#5c3e29] bg-[#ebd9b4] px-2 py-0.5 font-bold text-charcoal shadow-sm"
                   >
                     {tag}
                   </span>
@@ -127,26 +136,26 @@ export default function ProjectModal({ project, lang, onClose }: ProjectModalPro
 
             {/* Features */}
             <div>
-              <h3 className="font-pixel mb-2.5 text-[15px] font-bold uppercase tracking-wider text-terracotta border-b border-ochre/20 pb-1">
-                ⚔️ {t.keyFeatures}
+              <h3 className="font-pixel mb-2 text-[14px] font-black uppercase tracking-wider text-terracotta border-b-2 border-charcoal/10 pb-1 flex items-center gap-1">
+                <span>⚔️</span> {t.keyFeatures}
               </h3>
-              <ul className="space-y-2 text-[15px] text-black/70 dark:text-white/70 font-pixel">
+              <ul className="space-y-1.5 text-[14px] text-charcoal/80 font-medium pt-1">
                 {project.features.map((feature, i) => (
                   <li key={i} className="flex items-start gap-2">
-                    <span className="text-terracotta font-pixel font-bold">•</span>
+                    <span className="text-terracotta font-bold">•</span>
                     <span>{feature}</span>
                   </li>
                 ))}
               </ul>
             </div>
 
-            {/* Links (Retro Clickable Buttons) */}
-            <div className="flex flex-wrap gap-3 pt-4 font-pixel">
+            {/* Links (Stardew Style Wooden Buttons) */}
+            <div className="flex flex-wrap gap-4 pt-3 font-pixel">
               <a
                 href={project.github}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="flex items-center gap-2 border-2 border-retro-thick border-charcoal bg-gold px-6 py-3 text-[14px] font-bold text-charcoal hover:bg-gold/85 hover:translate-y-0.5 active:translate-y-1 dark:border-sand dark:text-charcoal shadow-retro-pixel-sm cursor-pointer"
+                className="stardew-btn px-6 py-2 text-[13px] tracking-wider uppercase flex items-center justify-center"
               >
                 {t.viewCode}
               </a>
@@ -155,7 +164,7 @@ export default function ProjectModal({ project, lang, onClose }: ProjectModalPro
                   href={project.demo}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="flex items-center gap-2 border-2 border-retro-thick border-charcoal bg-sage px-6 py-3 text-[14px] font-bold text-charcoal hover:bg-sage/85 hover:translate-y-0.5 active:translate-y-1 dark:border-sand dark:text-charcoal shadow-retro-pixel-sm cursor-pointer"
+                  className="stardew-btn px-6 py-2 text-[13px] tracking-wider uppercase flex items-center justify-center !bg-sage border-[#4e5d42]"
                 >
                   {t.tryDemo}
                 </a>

@@ -7,24 +7,24 @@ type LanguageSwitcherProps = {
 
 export default function LanguageSwitcher({ lang, onChange }: LanguageSwitcherProps) {
   return (
-    <div className="fixed top-6 right-6 z-[90] flex items-center gap-1.5 rounded-full border border-black/10 bg-white/70 px-3 py-1.5 text-[10px] font-black uppercase tracking-widest shadow-md backdrop-blur-md dark:border-white/10 dark:bg-zinc-900/70">
+    <div className="fixed top-6 right-6 z-[90] flex items-center gap-2 border-3 border-[#5c3e29] outline-1 outline-[#2d231e] bg-[#cfb088] px-3 py-1.5 font-pixel text-[11px] font-bold shadow-[3px_3px_0px_rgba(0,0,0,0.15)] text-[#2d231e]">
       <button
         onClick={() => onChange("en")}
         className={`cursor-pointer transition-colors ${
           lang === "en"
-            ? "text-black dark:text-white font-extrabold"
-            : "text-black/35 dark:text-white/35 hover:text-black/70 dark:hover:text-white/70"
+            ? "text-terracotta font-extrabold underline decoration-2 underline-offset-4"
+            : "text-[#2d231e]/55 hover:text-[#2d231e]"
         }`}
       >
         EN
       </button>
-      <span className="text-black/20 dark:text-white/20 select-none">|</span>
+      <span className="text-[#2d231e]/30 select-none">|</span>
       <button
         onClick={() => onChange("vi")}
         className={`cursor-pointer transition-colors ${
           lang === "vi"
-            ? "text-black dark:text-white font-extrabold"
-            : "text-black/35 dark:text-white/35 hover:text-black/70 dark:hover:text-white/70"
+            ? "text-terracotta font-extrabold underline decoration-2 underline-offset-4"
+            : "text-[#2d231e]/55 hover:text-[#2d231e]"
         }`}
       >
         VI

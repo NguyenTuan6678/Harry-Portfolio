@@ -2,8 +2,8 @@
 
 import { motion } from "motion/react";
 import { useEffect, useRef, useState } from "react";
-
 import { translations } from "./translations";
+import { Junimo } from "./StardewSprites";
 
 type LogLine = {
   text: string;
@@ -81,16 +81,17 @@ export default function DeveloperConsole({ lang }: { lang: "vi" | "en" }) {
     const trimmed = cmd.trim().toLowerCase();
     if (!trimmed) return;
 
-    const newLines: LogLine[] = [{ text: `harry@portfolio ~ % ${cmd}`, type: "input" }];
+    const promptText = `artisan@harry-farm ~ % ${cmd}`;
+    const newLines: LogLine[] = [{ text: promptText, type: "input" }];
 
     switch (trimmed) {
       case "help":
         newLines.push(
-          { text: t.cmdHelpTitle, type: "output" },
-          { text: `  neofetch  - ${lang === "vi" ? "Hiển thị thông tin hệ thống & GitHub stats" : "Display system info & GitHub stats"}`, type: "output" },
-          { text: `  skills    - ${lang === "vi" ? "Liệt kê kỹ năng lập trình với thanh tiến trình" : "List programming stack with progress bar"}`, type: "output" },
-          { text: `  ping      - ${lang === "vi" ? "Kiểm tra kết nối mạng đến server" : "Ping server latency"}`, type: "output" },
-          { text: `  clear     - ${lang === "vi" ? "Xóa lịch sử terminal" : "Wipe console history"}`, type: "output" }
+          { text: t.cmdHelpTitle, type: "success" },
+          { text: `  neofetch  - ${t.cmdHelpNeofetch}`, type: "output" },
+          { text: `  skills    - ${t.cmdHelpSkills}`, type: "output" },
+          { text: `  ping      - ${t.cmdHelpPing}`, type: "output" },
+          { text: `  clear     - ${t.cmdHelpClear}`, type: "output" }
         );
         break;
       case "clear":
@@ -100,38 +101,37 @@ export default function DeveloperConsole({ lang }: { lang: "vi" | "en" }) {
       case "ping":
         newLines.push(
           { text: t.cmdPingStart, type: "output" },
-          { text: `64 bytes from 103.82.21.9: icmp_seq=0 ttl=56 time=${(Math.random() * 20 + 5).toFixed(1)} ms`, type: "success" },
-          { text: `64 bytes from 103.82.21.9: icmp_seq=1 ttl=56 time=${(Math.random() * 20 + 5).toFixed(1)} ms`, type: "success" },
-          { text: "--- harrydev.vn ping statistics ---", type: "output" },
+          { text: `64 bytes from 103.82.21.9: dispatch_seq=0 energy=270 latency=${(Math.random() * 15 + 5).toFixed(1)} ms`, type: "success" },
+          { text: `64 bytes from 103.82.21.9: dispatch_seq=1 energy=270 latency=${(Math.random() * 15 + 5).toFixed(1)} ms`, type: "success" },
+          { text: "--- mail.pelicantown.org ping statistics ---", type: "output" },
           { text: t.cmdPingLoss, type: "output" }
         );
         break;
       case "skills":
         newLines.push(
           { text: t.cmdSkillsTitle, type: "success" },
-          { text: "  NestJS/NodeJS  [██████████████████░░] 90%", type: "output" },
-          { text: "  TypeScript     [██████████████████░░] 90%", type: "output" },
-          { text: "  React/Next.js  [████████████████░░░░] 80%", type: "output" },
-          { text: "  Swift/SwiftUI  [██████████████░░░░░░] 70%", type: "output" },
-          { text: "  Spring Boot    [██████████████░░░░░░] 70%", type: "output" },
-          { text: "  Postgre/Mongo  [████████████████░░░░] 80%", type: "output" }
+          { text: `  Farming (React/Next)   [▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓░░░░] 80% (Level 8)`, type: "output" },
+          { text: `  Mining (Spring Boot)   [▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓░░░░] 80% (Level 8)`, type: "output" },
+          { text: `  Foraging (NestJS/TS)   [▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓░░░░] 80% (Level 8)`, type: "output" },
+          { text: `  Fishing (Swift/iOS)    [▓▓▓▓▓▓▓▓▓▓▓▓░░░░░░░░] 60% (Level 6)`, type: "output" },
+          { text: `  Combat (Docker/DB)     [▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓░░░░] 80% (Level 8)`, type: "output" }
         );
         break;
       case "neofetch":
         newLines.push(
           {
             text: `
-   /\\_/\\      harry@HarryOS
-  ( o.o )     -------------
-   > ^ <      󰣇 OS: macOS 16.2.6
-              󰋜 Host: NextJS App Router
-               Kernel: React 19.2.6
-              󰔚 Uptime: 2 mins
-               Shell: HarryTerminal v1.0
+    _/_\\_     artisan@HarryFarm
+   ( o.o )    -----------------
+    > ^ <     󰣇 OS: StardewOS v2.6
+              󰋜 Engine: NextJS v16
+               Crop: TypeScript & Java
+              󰔚 Uptime: Year 2, Autumn
+               Tool: DwarfConsole v1.0
               
-               GITHUB STATS:
+               HARVESTED REPO STATS:
               *  Username:  ${githubStats.username}
-              *  Full Name: ${githubStats.name}
+              *  Name:      ${githubStats.name}
               *  Repos:     ${githubStats.repos}
               *  Followers: ${githubStats.followers}
               *  Stars:     ${githubStats.stars}
@@ -141,7 +141,12 @@ export default function DeveloperConsole({ lang }: { lang: "vi" | "en" }) {
         );
         break;
       default:
-        newLines.push({ text: lang === "vi" ? `Không tìm thấy lệnh: ${trimmed}. Gõ 'help' để xem danh sách.` : `Command not found: ${trimmed}. Type 'help' for options.`, type: "error" });
+        newLines.push({ 
+          text: lang === "vi" 
+            ? `Không tìm thấy mật lệnh: ${trimmed}. Nhập 'help' để dò cứu.` 
+            : `Mnemonic not found: ${trimmed}. Type 'help' for instructions.`, 
+          type: "error" 
+        });
     }
 
     setHistory((prev) => [...prev, ...newLines]);
@@ -155,15 +160,21 @@ export default function DeveloperConsole({ lang }: { lang: "vi" | "en" }) {
   };
 
   return (
-    <div className="w-full max-w-3xl overflow-hidden bg-[#24181a] p-5 text-[16px] font-nerd text-emerald-400/90 border-retro-double border-ochre shadow-retro-pixel rounded-sm">
+    <div className="relative w-full max-w-3xl overflow-hidden bg-[#1c1214] p-5 text-[15px] font-nerd text-[#a7f070] border-4 border-[#5c3e29] outline-4 outline-[#2d231e] shadow-2xl rounded-sm">
+      
+      {/* Decorative coal ores / Dwarf miner Junimo sitting on top-right */}
+      <div className="absolute top-0 right-8 z-30 -translate-y-2">
+        <Junimo size={38} color="#a9533c" /> {/* Dark orange-red Junimo */}
+      </div>
+
       {/* Terminal Header Bar */}
-      <div className="mb-4 flex items-center justify-between border-b-2 border-ochre/30 pb-3 font-retro">
+      <div className="mb-4 flex items-center justify-between border-b-2 border-[#5c3e29]/50 pb-3 font-retro">
         <div className="flex gap-1.5">
-          <span className="h-3 w-3 bg-terracotta border border-black/35 shadow-retro-pixel-sm" />
-          <span className="h-3 w-3 bg-gold border border-black/35 shadow-retro-pixel-sm" />
-          <span className="h-3 w-3 bg-sage border border-black/35 shadow-retro-pixel-sm" />
+          <span className="h-3 w-3 bg-terracotta border border-black/35 rounded-full" />
+          <span className="h-3 w-3 bg-gold border border-black/35 rounded-full" />
+          <span className="h-3 w-3 bg-sage border border-black/35 rounded-full" />
         </div>
-        <span className="text-[11px] uppercase tracking-widest text-gold font-bold">
+        <span className="text-[11px] uppercase tracking-widest text-[#cfb088] font-bold">
           {t.consoleHeader}
         </span>
         <div className="w-10" />
@@ -172,7 +183,7 @@ export default function DeveloperConsole({ lang }: { lang: "vi" | "en" }) {
       {/* Terminal Content Box */}
       <div
         ref={consoleContainerRef}
-        className="h-80 overflow-y-auto space-y-2 pr-2 font-nerd text-[16px] leading-relaxed"
+        className="h-80 overflow-y-auto space-y-2 pr-2 font-nerd text-[15px] leading-relaxed"
         onClick={() => inputRef.current?.focus()}
       >
         {history.map((line, index) => (
@@ -180,7 +191,7 @@ export default function DeveloperConsole({ lang }: { lang: "vi" | "en" }) {
             key={index}
             className={`whitespace-pre-wrap ${
               line.type === "input"
-                ? "text-sand"
+                ? "text-[#fcf3d9]"
                 : line.type === "error"
                 ? "text-terracotta font-bold"
                 : line.type === "success"
@@ -194,15 +205,15 @@ export default function DeveloperConsole({ lang }: { lang: "vi" | "en" }) {
       </div>
 
       {/* Terminal Input Line */}
-      <div className="mt-3 flex items-center gap-2 border-t-2 border-ochre/30 pt-3 font-nerd text-[16px]">
-        <span className="text-gold font-bold">harry@arcade ~ %</span>
+      <div className="mt-3 flex items-center gap-2 border-t-2 border-[#5c3e29]/50 pt-3 font-nerd text-[15px]">
+        <span className="text-gold font-bold">artisan@harry-farm ~ %</span>
         <input
           ref={inputRef}
           type="text"
           value={inputVal}
           onChange={(e) => setInputVal(e.target.value)}
           onKeyDown={handleKeyDown}
-          className="flex-1 bg-transparent text-sand outline-none caret-emerald-400 text-[16px]"
+          className="flex-1 bg-transparent text-[#fcf3d9] outline-none caret-[#a7f070] text-[15px]"
           placeholder={t.consoleInputPlaceholder}
           autoComplete="off"
           autoCorrect="off"

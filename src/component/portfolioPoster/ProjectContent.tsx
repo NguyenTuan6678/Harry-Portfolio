@@ -6,6 +6,7 @@ import { projects as baseProjects } from "./data";
 import { translations } from "./translations";
 import ProjectModal from "./ProjectModal";
 import ProjectGraphic from "./ProjectGraphic";
+import { Junimo } from "./StardewSprites";
 
 type Project = {
   id: string;
@@ -37,86 +38,124 @@ export default function ProjectContent({ lang }: { lang: "vi" | "en" }) {
   });
 
   return (
-    <div className="w-full max-w-7xl font-retro">
-      {/* Retro Stage Select Header */}
-      <motion.div
-        initial={{ opacity: 0, y: -50, scale: 1.1 }}
-        whileInView={{ 
-          opacity: [0, 1, 0.3, 1, 0.7, 1], // CRT flicker
-          y: 0,
-          scale: 1 
-        }}
-        viewport={{ once: true, amount: 0.15 }}
-        transition={{ 
-          opacity: { duration: 0.4, times: [0, 0.1, 0.2, 0.3, 0.4, 1] },
-          y: { type: "spring", stiffness: 240, damping: 12 },
-          scale: { type: "spring", stiffness: 240, damping: 12 }
-        }}
-        className="relative mb-14 text-center"
-      >
-        <h2 className="font-pixel text-5xl font-extrabold uppercase tracking-wider text-gold drop-shadow-[3px_3px_0px_#3c2428] md:text-7xl">
-          {lang === "vi" ? "CHỌN MÀN CHƠI" : "STAGE SELECT"}
-        </h2>
-        <span className="text-base text-terracotta font-bold tracking-[0.15em] uppercase mt-4 inline-block animate-pulse font-pixel">
-          [ {lang === "vi" ? "LỰA CHỌN DỰ ÁN ĐỂ XEM CHI TIẾT" : "SELECT A LEVEL TO EXPLORE"} ]
-        </span>
-      </motion.div>
+    <div className="w-full max-w-7xl font-retro relative">
+      
+      {/* Wooden Board roof decoration */}
+      <div className="absolute -top-6 left-6 right-6 h-6 bg-[#4a3020] border-4 border-charcoal rounded-t-md shadow-md z-25 flex justify-around">
+        {/* Moss pixel patches on roof */}
+        <div className="w-20 h-4 bg-sage/60 rounded-b-md" />
+        <div className="w-32 h-3 bg-sage/50 rounded-b-md" />
+        <div className="w-16 h-5 bg-sage/70 rounded-b-md" />
+      </div>
 
-      <div className="grid grid-cols-1 gap-6 md:grid-cols-5 font-pixel">
-        {localizedProjects.map((project, idx) => (
-          <motion.div
-            key={project.id}
-            initial={{ opacity: 0, scale: 0.7, y: 50 }}
-            whileInView={{ 
-              opacity: [0, 1, 0.4, 1, 0.8, 1], // CRT flicker
-              scale: 1, 
-              y: 0 
-            }}
-            viewport={{ once: true, amount: 0.1 }}
-            transition={{ 
-              opacity: { duration: 0.4, times: [0, 0.15, 0.3, 0.45, 0.6, 1], delay: idx * 0.07 },
-              scale: { type: "spring", stiffness: 260, damping: 14, delay: idx * 0.07 },
-              y: { type: "spring", stiffness: 260, damping: 14, delay: idx * 0.07 }
-            }}
-          >
-            <motion.article
-              layoutId={`project-${project.id}`}
-              onClick={() => setSelectedProject(project)}
-              className="group relative min-h-130 cursor-pointer overflow-hidden p-5 bg-[#faf8f1] dark:bg-[#42383F] text-charcoal dark:text-sand border-retro-thick border-charcoal dark:border-sand shadow-retro-pixel transition-all"
-              whileHover={{ y: -6 }}
-              transition={{ type: "spring", stiffness: 300, damping: 20 }}
-            >
-              {/* Background watermarked level ID */}
-              <span className="absolute right-4 top-2 select-none text-[8rem] font-retro font-black leading-none text-charcoal/5 dark:text-sand/5">
-                0{project.id}
-              </span>
+      {/* Main Wooden Board "Help Wanted Board" Container */}
+      <div className="stardew-board p-8 md:p-12 rounded-md">
+        
+        {/* Cute Green Junimo standing next to the board header */}
+        <div className="absolute -top-12 right-12 z-30">
+          <Junimo size={46} color="#708a5b" />
+        </div>
 
-              {/* Level graphic illustration */}
-              <div className="relative mx-auto mt-6 h-52 w-full transition-transform duration-500 group-hover:scale-105 flex items-center justify-center border border-retro-thick border-charcoal/10 dark:border-sand/10 bg-black/5 dark:bg-white/5 rounded-sm p-2">
-                <ProjectGraphic id={project.id} className="max-h-full max-w-full" />
-              </div>
+        {/* Retro Stage Select Header */}
+        <motion.div
+          initial={{ opacity: 0, y: -30, scale: 1.05 }}
+          whileInView={{ 
+            opacity: 1,
+            y: 0,
+            scale: 1 
+          }}
+          viewport={{ once: true, amount: 0.15 }}
+          transition={{ 
+            type: "spring",
+            stiffness: 180,
+            damping: 14
+          }}
+          className="relative mb-12 text-center"
+        >
+          {/* Header Title resembling Stardew Pelican Town board title */}
+          <h2 className="font-pixel text-4xl font-black uppercase tracking-wider text-[#bd5d38] drop-shadow-[2px_2px_0px_#fcf3d9] md:text-6xl">
+            {t.projectsTitle}
+          </h2>
+          <span className="text-sm text-[#fcf3d9] font-bold tracking-[0.18em] uppercase mt-2.5 inline-block animate-pulse font-pixel bg-[#5c3e29]/35 px-4 py-1 rounded">
+            {lang === "vi" ? "● BẢNG NHẬN NHIỆM VỤ NÔNG TRẠI ●" : "● PELICAN TOWN HELP WANTED ●"}
+          </span>
+        </motion.div>
 
-              {/* Bottom details */}
-              <div className="mt-6 flex flex-col items-start font-pixel">
-                <span className="text-[13px] font-bold uppercase tracking-wider text-terracotta">
-                  LEVEL 0{project.id}
-                </span>
+        {/* Board grid of Quest Papers */}
+        <div className="grid grid-cols-1 gap-8 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 font-pixel">
+          {localizedProjects.map((project, idx) => {
+            // Slight random rotation for paper effect
+            const rotateDeg = idx % 2 === 0 ? (idx % 3 === 0 ? 1.5 : -1) : 2;
+            
+            return (
+              <motion.div
+                key={project.id}
+                initial={{ opacity: 0, scale: 0.8, y: 30 }}
+                whileInView={{ 
+                  opacity: 1, 
+                  scale: 1, 
+                  y: 0 
+                }}
+                viewport={{ once: true, amount: 0.1 }}
+                transition={{ 
+                  type: "spring",
+                  stiffness: 200,
+                  damping: 15,
+                  delay: idx * 0.08 
+                }}
+              >
+                <motion.article
+                  layoutId={`project-${project.id}`}
+                  onClick={() => setSelectedProject(project)}
+                  className="stardew-quest-paper cursor-pointer p-5 flex flex-col justify-between min-h-[360px]"
+                  style={{ transform: `rotate(${rotateDeg}deg)` }}
+                  whileHover={{ 
+                    y: -8, 
+                    rotate: 0,
+                    scale: 1.03
+                  }}
+                  transition={{ type: "spring", stiffness: 350, damping: 15 }}
+                >
+                  {/* Push Pin (Đinh ghim giấy màu đỏ) */}
+                  <div className="absolute -top-3 left-1/2 -translate-x-1/2 w-4 h-4 bg-terracotta border-2 border-charcoal rounded-full shadow-md z-30 flex items-center justify-center">
+                    {/* Highlight dot on push pin */}
+                    <div className="w-1 h-1 bg-white rounded-full absolute top-0.5 left-0.5" />
+                  </div>
 
-                <h3 className="mt-1.5 text-[20px] font-bold uppercase tracking-wide text-black dark:text-sand leading-tight">
-                  {project.title}
-                </h3>
+                  {/* Top stamp mark */}
+                  <div className="w-full flex justify-between items-center text-[10px] font-bold text-charcoal/40 uppercase tracking-widest border-b border-dashed border-charcoal/10 pb-2">
+                    <span>PELICAN TOWN</span>
+                    <span>Q0{project.id}</span>
+                  </div>
 
-                <p className="mt-2.5 text-[15px] leading-relaxed text-black/75 dark:text-sand/75">
-                  {project.desc}
-                </p>
+                  {/* Level graphic illustration */}
+                  <div className="relative mx-auto mt-4 h-32 w-full flex items-center justify-center border border-charcoal/15 bg-[#ebd9b4]/30 rounded-sm p-1">
+                    <ProjectGraphic id={project.id} className="max-h-full max-w-full" />
+                  </div>
 
-                <span className="mt-4 inline-block text-[14px] font-bold tracking-wider text-terracotta dark:text-gold group-hover:text-gold dark:group-hover:text-terracotta border-b border-dashed border-terracotta dark:border-gold pb-0.5 transition-colors cursor-pointer">
-                  [ {t.viewDetail.replace(" →", "")} ]
-                </span>
-              </div>
-            </motion.article>
-          </motion.div>
-        ))}
+                  {/* Bottom details */}
+                  <div className="mt-4 flex flex-col items-start font-pixel">
+                    <span className="text-[11px] font-black uppercase tracking-wider text-terracotta">
+                      {lang === "vi" ? `NHIỆM VỤ 0${project.id}` : `QUEST 0${project.id}`}
+                    </span>
+
+                    <h3 className="mt-1 text-[17px] font-black uppercase tracking-wide text-charcoal leading-tight">
+                      {project.title}
+                    </h3>
+
+                    <p className="mt-2 text-[12.5px] leading-relaxed text-charcoal/80 font-medium">
+                      {project.desc}
+                    </p>
+
+                    <span className="mt-4 inline-block text-[12px] font-black tracking-wider text-sage hover:text-terracotta border-b-2 border-dashed border-sage/60 pb-0.5 transition-colors cursor-pointer">
+                      {t.viewDetail}
+                    </span>
+                  </div>
+                </motion.article>
+              </motion.div>
+            );
+          })}
+        </div>
       </div>
 
       {/* Shared Layout Modal Detail */}
